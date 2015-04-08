@@ -76,8 +76,9 @@
            */
           $scope.$watch('dateSet', function dateSetWatcher(value) {
             if (value) {
-              if(value == 'current' && $scope.day){
-                $scope.setDatepickerDay($scope.day);
+              if(value == 'current'){
+                date = new Date();
+                $scope.setDatepickerDay( Number($filter('date')(date, 'dd')));
                 return;
               }
 
@@ -109,6 +110,7 @@
           $scope.daysInString = ['0', '1', '2', '3', '4', '5', '6'].map(function mappingFunc(el) {
             return $filter('date')(new Date(new Date('06/08/2014').valueOf() + A_DAY_IN_MILLISECONDS * el), 'EEE');
           });
+          $scope.selectedDate = {day: Number($filter('date')(date, 'dd')), month: $scope.monthNumber, year:Number($filter('date')(date, 'yyyy'))};
 
           //create the calendar holder
           thisInput.after($compile(angular.element(htmlTemplate))($scope));
@@ -140,9 +142,13 @@
            */
           thisInput.on('keydown', function(e) {
             if (e.which == '13') {
-              if($scope.day != undefined){
-                $scope.setDatepickerDay($scope.day, true);
+              if($scope.day == undefined){
+                $scope.day = $scope.selectedDate['day'];
+                $scope.monthNumber = $scope.selectedDate['month'];
+                $scope.year = $scope.selectedDate['year'];
+                $scope.setInputValue();
               }
+              $scope.setDatepickerDay($scope.day, true);
               e.preventDefault();
             }
           });
@@ -306,6 +312,8 @@
               && $scope.isSelectableMaxDate($scope.year + '/' + $scope.monthNumber + '/' + $scope.day)) {
 
               var modelDate = new Date($scope.year + '/' + $scope.monthNumber + '/' + $scope.day);
+
+              $scope.selectedDate = {day: $scope.day, month: $scope.monthNumber, year: $scope.year};
 
               if (attr.dateFormat) {
 
