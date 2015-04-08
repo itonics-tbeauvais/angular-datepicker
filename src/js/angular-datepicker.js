@@ -142,12 +142,13 @@
            */
           thisInput.on('keydown', function(e) {
             if (e.which == '13') {
-              if($scope.day == undefined){
-                $scope.day = $scope.selectedDate['day'];
-                $scope.monthNumber = $scope.selectedDate['month'];
-                $scope.year = $scope.selectedDate['year'];
-                $scope.setInputValue();
-              }
+              /*if($scope.day == undefined){
+               $scope.day = $scope.selectedDate['day'];
+               $scope.monthNumber = $scope.selectedDate['month'];
+               $scope.year = $scope.selectedDate['year'];
+               $scope.setInputValue();
+
+               }*/
               $scope.setDatepickerDay($scope.day, true);
               e.preventDefault();
             }
@@ -235,7 +236,7 @@
               }
             }
             //deactivate selected day
-            $scope.day = undefined;
+            //$scope.day = undefined;
           };
 
           $scope.selectedMonthHandle = function manageSelectedMonthHandle(selectedMonth) {
@@ -269,13 +270,13 @@
               }
             }
             //deactivate selected day
-            $scope.day = undefined;
+            //$scope.day = undefined;
           };
 
           $scope.setNewYear = function setNewYear(year) {
 
             //deactivate selected day
-            $scope.day = undefined;
+            //$scope.day = undefined;
 
             if (dateMaxLimit && $scope.year < Number(year)) {
 
@@ -314,6 +315,8 @@
               var modelDate = new Date($scope.year + '/' + $scope.monthNumber + '/' + $scope.day);
 
               $scope.selectedDate = {day: $scope.day, month: $scope.monthNumber, year: $scope.year};
+
+              console.log("sadf",$scope.monthNumber);
 
               if (attr.dateFormat) {
 
