@@ -13,7 +13,8 @@
         'scope': {
           'dateSet': '@',
           'dateMinLimit': '@',
-          'dateMaxLimit': '@'
+          'dateMaxLimit': '@',
+          'setCurrentDate': '@'
         },
         'link': function linkingFunction($scope, element, attr) {
           //get child input
@@ -75,6 +76,11 @@
            */
           $scope.$watch('dateSet', function dateSetWatcher(value) {
             if (value) {
+              if(value == 'current' && $scope.day){
+                $scope.setDatepickerDay($scope.day);
+                return;
+              }
+
               date = new Date(value);
               $scope.month = $filter('date')(date, 'MMMM');//December-November like
               $scope.monthNumber = Number($filter('date')(date, 'MM')); // 01-12 like
@@ -134,7 +140,9 @@
            */
           thisInput.on('keydown', function(e) {
             if (e.which == '13') {
-              $scope.setDatepickerDay($scope.day, true);
+              if($scope.day != undefined){
+                $scope.setDatepickerDay($scope.day, true);
+              }
               e.preventDefault();
             }
           });
