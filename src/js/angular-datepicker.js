@@ -316,7 +316,6 @@
 
               $scope.selectedDate = {day: $scope.day, month: $scope.monthNumber, year: $scope.year};
 
-              console.log("sadf",$scope.monthNumber);
 
               if (attr.dateFormat) {
 
