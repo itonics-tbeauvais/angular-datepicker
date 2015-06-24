@@ -79,6 +79,7 @@
               if(value == 'current'){
                 date = new Date();
                 $scope.setDatepickerDay( Number($filter('date')(date, 'dd')));
+                  $scope.$emit('currentDateSet');
                 return;
               }
 
