@@ -6,16 +6,16 @@ datepicker a:hover, [datepicker] a:hover, .datepicker a:hover{
   text-decoration:none;
 }
 datepicker select, datepicker select:focus, datepicker select:hover,
-.datepicker select, .datepicker select:focus, .datepicker select:hover
+.datepicker select, .datepicker select:focus, .datepicker select:hover,
 [datepicker] select, [datepicker] select:focus, [datepicker] select:hover{
   width:100%;
    overflow: hidden;
    background:none;
    color:#fff;
    background-color: #138EFA;
-   border: 1px solid rgba(0,0,0,0.05);
-   height: 30px;
    border-radius:2px;
+   border: 0;
+   margin-top:5px;
 }
 datepicker, .datepicker, [datepicker],
 ._720kb-datepicker-calendar-header,
@@ -53,7 +53,7 @@ datepicker, .datepicker, [datepicker],
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
-._720kb-datepicker-calendar._720kb-datepicker-open {
+._720kb-datepicker-calendar._720kb-datepicker-open,._720kb-datepicker-calendar._720kb-datepicker-forced-to-open {
   visibility: visible;
 }
 ._720kb-datepicker-calendar-header {
@@ -75,6 +75,14 @@ datepicker, .datepicker, [datepicker],
 }
 ._720kb-datepicker-calendar-header-middle {
   width: 70%;
+}
+
+._720kb-datepicker-calendar-header-closed-pagination::after {
+  content: " \25BE";
+}
+
+._720kb-datepicker-calendar-header-opened-pagination::after {
+  content: " \25F9";
 }
 ._720kb-datepicker-calendar-body {
   width: 96%;
@@ -114,7 +122,6 @@ datepicker, .datepicker, [datepicker],
 }
 ._720kb-datepicker-calendar-month span {
   font-size: 13px;
-  margin-left:1%;
   color:rgba(0, 0, 0, 0.4);
 }
 ._720kb-datepicker-calendar-month a span  i {
@@ -169,6 +176,9 @@ datepicker, .datepicker, [datepicker],
   position: relative;
   bottom:-0.5px;
 }
+._720kb-datepicker-default-button{
+  padding:0 4.5px;
+}
 ._720kb-datepicker-calendar-header-middle._720kb-datepicker-mobile-item{
   width:95%;
   float:none;
@@ -186,4 +196,8 @@ datepicker, .datepicker, [datepicker],
   color:rgba(0,0,0,0.2);
   background: rgba(25,2,0,0.02);
   cursor: default;
+}
+/*options*/
+[datepicker-toggle="false"] > ._720kb-datepicker-calendar{
+  visibility:visible;
 }

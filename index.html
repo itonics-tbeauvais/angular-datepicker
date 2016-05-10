@@ -15,35 +15,42 @@
   </style>
   <title>Angularjs Datepicker</title>
 </head>
-<body>
+<body ng-controller="TestController as ctrl">
   <div class="separator50"></div>
   <div class="col6 offset-left2">
     <div class="col3">
-      <div datepicker>
+      <div datepicker datepicker-class="test-custom-class" date-min-limit="2016/02/28" date-max-limit="2016/03/03" date-typer="true">
         <input ng-model="date1" type="text" class="angular-datepicker-input"/>
       </div>
       Date 1 is: {{date1}}
     </div>
     <div class="col3">
       <div class="datepicker"
+      date-set-hidden="true"
+      datepicker-append-to="body"
       date-format="MMMM d, y"
-      date-min-limit="2014/09/07"
-      date-max-limit="2018/09/07"
+      date-set="2015/11/26"
+      date-min-limit="2014/08/07"
+      date-max-limit="2016/09/07"
+      date-typer="true"
+      date-disabled-dates="['2014/08/07', '2014/08/08' ]"
       button-prev='<i class="fa fa-arrow-circle-left"></i>'
       button-next='<i class="fa fa-arrow-circle-right"></i>'>
       <input ng-model="date2" type="text" class="angular-datepicker-input"/>
     </div>
     Date 2 is: {{date2}}
+    <input ng-model="date4" type="text" class="angular-datepicker-input"/>
   </div>
   <div class="col3">
-    <datepicker>
+    <datepicker datepicker-show="{{ctrl.visibility}}">
       <input ng-model="date3" type="text" class="angular-datepicker-input"/>
     </datepicker>
     Date 3 is: {{date3}}
   </div>
 </div>
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular.min.js"></script>
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular-route.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.4.6/angular-locale_es.js"></script>
 <script type="text/javascript" src="src/js/angular-datepicker.js"></script>
 <script type="text/javascript" src="assets/js/index.js"></script>
 </body>

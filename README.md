@@ -1,5 +1,8 @@
 Angular Datepicker
 ==================
+![Angular datepicker calendar](http://i.imgur.com/jKfADtA.png)
+
+[![Join the chat at https://gitter.im/720kb/angular-datepicker](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/720kb/angular-datepicker?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
 Angular datepicker is an angularjs directive that generates a datepicker calendar on your input element.
@@ -8,24 +11,13 @@ The Angularjs Datepicker is developed by [720kb](http://720kb.net).
 
 ##Requirements
 
-
-AngularJS v1.2+
-
-##Screen
-![Angular datepicker calendar](http://i.imgur.com/44ut0ET.png)
+AngularJS v1.3+
 
 ###Browser support
-=======
 
-Chrome ![ok](http://i.imgur.com/CK8qxk1.png)
-
-Firefox ![ok](http://i.imgur.com/CK8qxk1.png)
-
-Safari ![ok](http://i.imgur.com/CK8qxk1.png)
-
-Opera ![ok](http://i.imgur.com/CK8qxk1.png)
-
-IE ![mmm](http://i.imgur.com/iAIwqCL.png)
+![Chrome](https://raw.github.com/alrra/browser-logos/master/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/firefox/firefox_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/internet-explorer/internet-explorer_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/opera/opera_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/safari/safari_48x48.png)
+--- | --- | --- | --- | --- |
+ ✔ | ✔ | IE9 + | ✔ | ✔ |
 
 
 ## Load
@@ -45,12 +37,17 @@ To use the directive, include the Angular Datepicker's javascript and css files 
 </html>
 ```
 
-##Install
+##Installation
 
-###Bower installation
+####Bower
 
 ```
 $ bower install angularjs-datepicker --save
+```
+####Npm
+
+```
+$ npm install angularjs-datepicker --save
 ```
 
 _then load the js files in your html_
@@ -65,7 +62,6 @@ angular.module('app', [
  ]);
 ```
 
-
 Call the directive wherever you want in your html page
 
 ```html
@@ -75,37 +71,43 @@ Call the directive wherever you want in your html page
 ```
 > By default the ng-model will show a Javascript Date() Object inside your input, you can use the options below to set your preferred date format to.
 
+
+##DOC
+
+Option | Type | Default | Description
+------------- | ------------- | ------------- | -------------
+date-set="" | String | false | Set a default date to show and init datepicker
+ |  | | **tip:** _Do not use same scope for ng-model="date" and date-set="{{date}}", this example is wrong._
+ |  | | **tip:** _If you want to pass a Date Object inside do like this date-set="{{new Date().toString()}}"_
+ |  | | **tip:** _Be sure the date you pass inside date-set="31/11/2017" is not in a different format when using date-format="MM/dd/yyyy"._
+date-format="" | String | String(new Date()) | Set the date format you want to use, see the list [here](https://docs.angularjs.org/api/ng/filter/date)
+ |  | | **tip:** _Be always sure to use a recognized format, maybe try first of all to pass it through new Date('...') and see if it's recognized_
+date-min-limit="" | String | false | Set a minimum date limit - you can use all the accepted date formats by the javascript `new Date()`
+date-max-limit="" | String | false | Set a maximum date limit - you can use all the accepted date formats by the javascript `new Date()`
+date-set-hidden="" | String(Boolean) | false | Set the default date to be shown only in calendar and not in the input field
+date-disabled-dates="" | String([Date(), Date(), ...]) | false | Disable specific dates using an _Array_ of dates
+date-refocus="" | String(Boolean) | false | Set the datepicker to re-focus the input after selecting a date
+date-typer="" | String(Boolean) | false | Set the datepicker to update calendar date when user is typing a date, see validation [tips](#date-validation) 
+datepicker-class="" | String('class1 class2 class3') | false | Set custom class/es for the datepicker calendar
+datepicker-append-to="" | String('#id','.classname', 'body') | false | Append the datepicker to #id or  .class element or to body
+datepicker-toggle="" | String(Boolean) | true | Set the datepicker to toggle its visibility on focus and blur
+datepicker-show="" | String | false | Trigger the datepicker visibility, if true datepicker is shown if false it is hidden
+ |  | | **tip:** _You may use this option togheter with datepicker-toggle="false" for a stable behavior_
+
 ##Options
 Angular datepicker allows you to use some options via `attribute` data
 
-####Date format
-You can use all the Angularjs `$date` filter date formats (that can be found [here](https://docs.angularjs.org/api/ng/filter/date))
+####Custom titles
+
+You can set the titles for the month and year selectors with the **date-year-title=""** and **date-month-title=""** data attributes (default to is _"select month"_ and _"select year"_)
 
 ```html
-<datepicker date-format="{{pattern}}">
-  <input ng-model="date" type="text"/>
-</datepicker>
-```
-
-####Date limits
-You can set date limits using `date-min-limit=""` and `date-max-limit=""` attribute data ( you can use all the accepted date formats by the javascript `new Date()`)
-
-```html
-<datepicker date-min-limit="2014/08/11" date-max-limit="2018/07/14">
-  <input ng-model="date" type="text"/>
-</datepicker>
-```
-
-####Default date
-You can set date to be displayed by default with `date-set=""` attribute data ( you can use all the accepted date formats by the javascript `new Date()`)
-
-```html
-<datepicker date-set="2018/07/14">
-  <input ng-model="date" type="text"/>
+<datepicker date-month-title="selected year">
+    <input ng-model="date"/>
 </datepicker>
 
-<datepicker date-set="{{myModel.date}}">
-  <input ng-model="myModel.date" type="text"/>
+<datepicker date-year-title="selected title">
+    <input ng-model="date"/>
 </datepicker>
 ```
 
@@ -118,26 +120,116 @@ You can customize the calendar navigation buttons content, let's make an example
 </datepicker>
 ```
 
+####Custom buttons titles for arrows
+You can also set the titles for the left and right arrows with **button-next-title=""** for the right and **button-prev-title=""** for the left. By default they are labeled _"next"_ and _"prev"_.
+
+```html
+<datepicker button-prev-title="previous month">
+    <input ng-model="date"/>
+</datepicker>
+
+<datepicker button-next-title="next month">
+    <input ng-model="date" type="text"/>
+</datepicker>
+```
+
 ####Input as grandchild
-Sometimes you cannot put date input as a first child of datepicker. In this case you may use `selector=""` to point to the CSS class of the input. Below example with using Twitter Bootstrap and FontAwesome 
+Sometimes you cannot put date input as a first child of datepicker. In this case you may use `selector=""` to point to the CSS class of the input. Below example with using Twitter Bootstrap and FontAwesome
 
 ```html
 <datepicker date-format="yyyy-MM-dd" selector="form-control">
     <div class="input-group">
-        <input placeholder="Choose a date"/>
-        <span class="input-group-addon" style="cursor: pointer"><i class="fa fa-lg fa-calendar"></i></span>
+        <input class="form-control" placeholder="Choose a date"/>
+        <span class="input-group-addon" style="cursor: pointer">
+        <i class="fa fa-lg fa-calendar"></i>
+        </span>
     </div>
 </datepicker>
 ```
+####Manually show and hide datepicker
+Sometimes you want to (manually/programmatically) show or hide the datepicker, this can be achieved using `datepicker-show` attribute, if `false`, datepicker is hidden, if `true`, datepicker is shown
 
-## Example
+```javascript
+.controller('TestController', ['$scope', '$interval', function TestController($scope, $interval) {
+    $scope.visibility = true;
 
-###[Live demo](https://720kb.github.io/angular-datepicker)
+    $interval(function setInterval() {
+      //toggling manually everytime
+      $scope.visibility = !$scope.visibility;
+    }, 3500);
+  }]);
+```
+```html
+  <datepicker ng-controller="TestController" datepicker-show="{{visibility}}">
+      <input ng-model="date3" type="text" class="angular-datepicker-input"/>
+    </datepicker>
+```
+_tip: you should use this attribute togheter with `datepicker-toggle="false" , for a better stable behavior of the datepicker_
 
-##Theming
-You can edit the default Css file `angular-datepicker.css` if you want to make a new theme for the datepicker.
+####Input as grandchild
+Sometimes you cannot put date input as a first child of datepicker. In this case you may use `selector=""` to point to the CSS class of the input. Below example with using Twitter Bootstrap and FontAwesome
+
+```html
+<datepicker date-format="yyyy-MM-dd" selector="form-control">
+    <div class="input-group">
+        <input class="form-control" placeholder="Choose a date"/>
+        <span class="input-group-addon" style="cursor: pointer">
+        <i class="fa fa-lg fa-calendar"></i>
+        </span>
+    </div>
+</datepicker>
+```
+###Tips
+
+####Date validation
+If you want to validate the input, while user is typing for example, you just have to refer to the `ngModel`.
+As long as you use something like:
+```html
+<div ng-controller="MyCtrl as ctrl">
+<input datepicker type="text" ng-model="myDate"/>
+</div>
+```
+You can show validation errors simply validating the ngModel, as you would do for any other type of input, for example:
+```javascript
+.controller('Ctrl', ['$scope', function ($scope) {
+  var liveDate;
+  
+  $scope.$watch('myDate', function (value) {
+    try {
+     liveDate = new Date(value);
+    } catch(e) {}
+    
+    if (!liveDate) {
+    
+      $scope.error = "This is not a valid date";
+    } else {
+      $scope.error = false;
+    }
+  });
+}]);
+```
+
+Then your final html:
+```html
+<div ng-controller="MyCtrl as ctrl">
+<input type="text" ng-model="myDate" datepicker/>
+<div ng-show="ctrl.error">{{ctrl.error}}</div>
+</div>
+```
+
+
+### Example
+
+[Live demo](https://720kb.github.io/angular-datepicker)
+
+##Themes :art:
+You can edit the default Css file `angular-datepicker.css` if you want to make a new theme for the datepicker, then just add it to the ```themes``` dir and PR!
+
+More about it https://github.com/720kb/angular-datepicker/tree/master/themes.
 
 Here is an example of a [Dark Theme](http://codepen.io/45kb/pen/bjslv) made using custom Css.
+
+***_Please note that the example may not be uptodate with the latest angular and/or module version_
 
 ##Contributing
 
