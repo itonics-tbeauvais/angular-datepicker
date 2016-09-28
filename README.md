@@ -78,8 +78,8 @@ Option | Type | Default | Description
 ------------- | ------------- | ------------- | -------------
 date-set="" | String | false | Set a default date to show and init datepicker
  |  | | **tip:** _Do not use same scope for ng-model="date" and date-set="{{date}}", this example is wrong._
- |  | | **tip:** _If you want to pass a Date Object inside do like this date-set="{{new Date().toString()}}"_
- |  | | **tip:** _Be sure the date you pass inside date-set="31/11/2017" is not in a different format when using date-format="MM/dd/yyyy"._
+ |  | | **tip:** _If you want to pass a Date Object inside do like this date-set="{{newDateObject.toString()}}"_
+ |  | | **tip:** _Consider that `date-set="{{myDate}}"` equals to `new Date(attr.dateSet)`, be sure the date you pass inside date-set="" is always in a correct ISO format, or adjust it based on the browser locale to avoid problems with that."._
 date-format="" | String | String(new Date()) | Set the date format you want to use, see the list [here](https://docs.angularjs.org/api/ng/filter/date)
  |  | | **tip:** _Be always sure to use a recognized format, maybe try first of all to pass it through new Date('...') and see if it's recognized_
 date-min-limit="" | String | false | Set a minimum date limit - you can use all the accepted date formats by the javascript `new Date()`
@@ -92,7 +92,7 @@ datepicker-class="" | String('class1 class2 class3') | false | Set custom class/
 datepicker-append-to="" | String('#id','.classname', 'body') | false | Append the datepicker to #id or  .class element or to body
 datepicker-toggle="" | String(Boolean) | true | Set the datepicker to toggle its visibility on focus and blur
 datepicker-show="" | String | false | Trigger the datepicker visibility, if true datepicker is shown if false it is hidden
- |  | | **tip:** _You may use this option togheter with datepicker-toggle="false" for a stable behavior_
+ |  | | **tip:** _You may use this option together with datepicker-toggle="false" for a stable behavior_
 
 ##Options
 Angular datepicker allows you to use some options via `attribute` data
@@ -164,7 +164,7 @@ Sometimes you want to (manually/programmatically) show or hide the datepicker, t
       <input ng-model="date3" type="text" class="angular-datepicker-input"/>
     </datepicker>
 ```
-_tip: you should use this attribute togheter with `datepicker-toggle="false" , for a better stable behavior of the datepicker_
+_tip: you should use this attribute together with `datepicker-toggle="false" , for a better stable behavior of the datepicker_
 
 ####Input as grandchild
 Sometimes you cannot put date input as a first child of datepicker. In this case you may use `selector=""` to point to the CSS class of the input. Below example with using Twitter Bootstrap and FontAwesome

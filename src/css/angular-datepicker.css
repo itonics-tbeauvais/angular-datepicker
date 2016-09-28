@@ -22,7 +22,7 @@ datepicker, .datepicker, [datepicker],
 ._720kb-datepicker-calendar-body,
 ._720kb-datepicker-calendar-days-header,
 ._720kb-datepicker-calendar-years-pagination-pages {
-  font-family: Helvetica Neue;
+  font-family: Helvetica Neue, Arial, sans-serif;
   font-size: 13.5px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -82,7 +82,16 @@ datepicker, .datepicker, [datepicker],
 }
 
 ._720kb-datepicker-calendar-header-opened-pagination::after {
-  content: " \25F9";
+  content: " \25BE";
+  margin-left: 4px;
+  position: relative;
+  bottom: -3px;
+  display:inline-block;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 ._720kb-datepicker-calendar-body {
   width: 96%;
@@ -162,13 +171,13 @@ datepicker, .datepicker, [datepicker],
   border-bottom:1px solid rgba(0,0,0,0.02);
 }
 ._720kb-datepicker-calendar-days-header div{
- width: 13.2%;
- font-weight: 500;
- font-size: 11.5px;
- padding:10px 0.5%;
- float:left;
- text-align: center;
- color:rgba(0,0,0,0.7);
+  width: 14.18%;
+  font-weight: 500;
+  font-size: 11.5px;
+  padding:10px 0;
+  float:left;
+  text-align: center;
+  color:rgba(0,0,0,0.7);
 }
 ._720kb-datepicker-calendar-days
 ._720kb-datepicker-default-button{
@@ -196,8 +205,4 @@ datepicker, .datepicker, [datepicker],
   color:rgba(0,0,0,0.2);
   background: rgba(25,2,0,0.02);
   cursor: default;
-}
-/*options*/
-[datepicker-toggle="false"] > ._720kb-datepicker-calendar{
-  visibility:visible;
 }
